@@ -82,9 +82,17 @@ JDK1.2之后提供了SoftReference类来实现软引用。
 &emsp;&emsp;目前商业虚拟机都采用的算法。根据对象的存活周期不同将内存划分为几块（一般是把JAVA堆分为新生代和老年代），
 然后根据各块内存中对象的特点采用不同的收集算法。
 ##2垃圾收集器
-
-&emsp;&emsp;
-&emsp;&emsp;
+###2.1、Serial收集器
+&emsp;&emsp;最基本发展历史最悠久的收集器。是一个单线程的收集器。曾经是年轻代收集器唯一的选择。
+&emsp;&emsp;是虚拟机运行在Client模式下的默认的新生代的收集器。
+###2.2、ParNew收集器
+&emsp;&emsp;相当于Serial收集器的多线程版本。除了多线程意外与Serial收集没有太多的创新。
+是运行在Server模式下的虚拟机中首选的新生代收集器。除了Serial之外，目前唯一能与CMS收集器配合工作的收集器。
+###2.3、Parallel Scavenge收集器
+###2.4、Serial Old收集器
+###2.5、Parallel Old收集器
+###2.6、CMS收集器
+###2.7、G1收集器
 &emsp;&emsp;
 &emsp;&emsp;
 &emsp;&emsp;
