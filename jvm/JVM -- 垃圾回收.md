@@ -89,11 +89,15 @@ JDK1.2之后提供了SoftReference类来实现软引用。
 &emsp;&emsp;相当于Serial收集器的多线程版本。除了多线程意外与Serial收集没有太多的创新。
 是运行在Server模式下的虚拟机中首选的新生代收集器。除了Serial之外，目前唯一能与CMS收集器配合工作的收集器。
 ###2.3、Parallel Scavenge收集器
+&emsp;&emsp;Parallel Scavenge收集器是一个新生代收集器，使用的是复制算法，是一个多线程的收集器，通常被称为“吞吐量有先”收集器。
+Parallel Scavenge收集器的目标是达到一个可控制的吞吐量（CPU用于运行用户代码的时间与CPU总消耗时间的比值）。
 ###2.4、Serial Old收集器
+&emsp;&emsp;Serial Old事Serial收集器的老年代版本，是一个单线程收集器，使用的是“标记-整理算法”。该收集器的主要意义在于给Client模式下的虚拟机使用。
+如果实在Server模式下，它有两大用途：1、JDK1.5及以前与Parallel Scavenge收集器搭配使用；
+2、作为CMS收集器的后备预案，在并发收集发生Concurrent Mode Failure时使用。
 ###2.5、Parallel Old收集器
 ###2.6、CMS收集器
 ###2.7、G1收集器
-&emsp;&emsp;
 &emsp;&emsp;
 &emsp;&emsp;
 &emsp;&emsp;
