@@ -96,8 +96,14 @@ Parallel Scavenge收集器的目标是达到一个可控制的吞吐量（CPU用
 如果实在Server模式下，它有两大用途：1、JDK1.5及以前与Parallel Scavenge收集器搭配使用；
 2、作为CMS收集器的后备预案，在并发收集发生Concurrent Mode Failure时使用。
 ###2.5、Parallel Old收集器
+&emsp;&emsp;
 ###2.6、CMS收集器
+&emsp;&emsp;
 ###2.7、G1收集器
+&emsp;&emsp;
+##3、GC日志
+&emsp;&emsp;
+##4、垃圾收集器参数
 &emsp;&emsp;
 &emsp;&emsp;
 &emsp;&emsp;
