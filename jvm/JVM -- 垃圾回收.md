@@ -130,6 +130,8 @@ Parallel Scavenge收集器的目标是达到一个可控制的吞吐量（CPU用
 &emsp;&emsp;
 ##4、垃圾收集器参数
 &emsp;&emsp;
-##5、内存分配与回收
+#三、什么时候回收
+##1、内存分配与回收
 &emsp;&emsp;
+##2、分代回收
 &emsp;&emsp;
