@@ -132,6 +132,9 @@ Parallel Scavenge收集器的目标是达到一个可控制的吞吐量（CPU用
 &emsp;&emsp;
 #三、什么时候回收
 &emsp;&emsp;简单的说就是年轻代、老年代、方法区垃圾回收的触发条件。
+Minor GC：年轻代GC
+Major GC：老年代GC
+Full GC：同时清理年轻代和老年代
 但是需要更深入的了解这些机制。
 ##1、内存分配与回收
 ###1.1、对象优先分配在Eden区域
