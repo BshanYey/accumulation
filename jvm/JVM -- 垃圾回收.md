@@ -131,11 +131,32 @@ Parallel Scavenge收集器的目标是达到一个可控制的吞吐量（CPU用
 ##4、垃圾收集器参数
 &emsp;&emsp;
 #三、什么时候回收
-&emsp;&emsp;简单的说就是年轻代、老年代、方法区垃圾回收的触发条件。
-Minor GC：年轻代GC
-Major GC：老年代GC
-Full GC：同时清理年轻代和老年代
-但是需要更深入的了解这些机制。
+&emsp;&emsp;简单的说就是年轻代、老年代、方法区垃圾回收的触发条件。针对HotSpot VM来说：
+##1、Partial GC
+&emsp;&emsp;不回收整个堆的GC模式。
+###1.1、Young GC
+&emsp;&emsp;只收集young gen的GC<br/>
+&emsp;&emsp;触发条件：Eden区不够用了
+###1.2、Old GC
+&emsp;&emsp;只收集old gen的GC。只有CMS的concurrent collection是这个模式
+&emsp;&emsp;触发条件：当有新的对象晋升如老年代导致老年代空间不够用时。
+###1.3、Mixed GC
+&emsp;&emsp;收集整个young gen以及部分old gen的GC。只有G1有这个模式<br/>
+&emsp;&emsp;Mixed GC（混合回收），官方解释：成功完成并发标记周期后, g1 gc 从执行年轻代回收切换到执行混合回收。
+在混合回收中, g1 gc 可选择将一些老年代区域添加到将回收的 Eden 和幸存者区域集。
+添加的老年区域的确切数量由几个flag控制。g1 gc 回收足够数量的老年代区域 (通过多次混合回收) 后, 
+g1 将恢复到执行年轻代回收, 直到下一个并发标记周期完成。
+##2、Full GC
+&emsp;&emsp;收集整个堆，包括young gen、old gen、perm gen（如果存在的话）等所有部分的模式
+&emsp;&emsp;当准备要触发一次young GC时，如果发现统计数据说之前young GC的平均晋升大小比目前old gen剩余的空间大，则不会触发young GC而是转为触发full GC
+&emsp;&emsp;触发条件：
+ * 调用System.gc时，系统建议执行Full GC（不必然执行）；
+ * 方法区空间不足
+ * 老年代空间不足：<br/>
+&emsp;&emsp;通过Minor GC进入老年代的平均大小小于老年代可用内存<br/>
+&emsp;&emsp;CMS GC异常：promotion failed:MinorGC时，survivor空间放不下，对象只能放入老年代，而老年代也放不下。concurrent mode failure:GC时，同时有对象要放入老年代，而老年代空间不足。<br/>
+&emsp;&emsp;堆内存分配很大的对象直接进入老年代，但是老年代内存不足
+#四、其他
 ##1、内存分配与回收
 ###1.1、对象优先分配在Eden区域
 &emsp;&emsp;大多数情况对象直接在新生代Eden中分配，当Eden区域没有足够的内存空间的时候会触发一次Minor GC。
