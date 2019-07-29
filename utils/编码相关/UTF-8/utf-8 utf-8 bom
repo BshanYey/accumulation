@@ -1,0 +1,19 @@
+#起因
+&emsp;&emsp;现在用Intellij IDEA作为主要开发工具，但是有同事使用eclipse或者myeclipse，这个时候项目里边就出现来了一个问题。
+在eclipse或者myeclipse里边创建的文件有的时候（不知道具体什么时候）创建的文件不是UTF-8编码，而是UTF-8 BOM编码，
+这就导致IDEA里边会编译报错，而一个一个替换太花时间。于是本着省心（懒？）的角度就百度找了一个脚本（power shell），
+然而执行之后文件编码确实变成了UTF-8，但是代码里边的所有中文也被换成了乱码（整个项目替换的，泪奔）。
+于是，自己写代码来实现UTF-8 BOM到UTF-8的编码转换。
+#原理
+##概念
+ * 在UCS编码中有一个叫做"ZERO WIDTH NO-BREAK SPACE"的字符，它的编码是FEFF。而FFFE在UCS中是不存在的字符，所以不应该出现在实际传输中。
+ * UCS规范建议我们在传输字节流前，先传输字符"ZERO WIDTH NO-BREAK SPACE"。
+ * 如果接收者收到FEFF，就表明这个字节流是大字节序的；如果收到FFFE，就表明这个字节流是小字节序的。
+ 因此字符"ZERO WIDTH NO-BREAK SPACE"又被称作BOM。
+ * UTF-8不需要BOM来表明字节顺序，但可以用BOM来表明编码方式。字符"ZERO WIDTH NO-BREAK SPACE"的UTF-8编码是EF BB BF。
+ 所以如果接收者收到以EF BB BF开头的字节流，就知道这是UTF-8编码了。
+&emsp;&emsp;简单的说UTF-8 BOM和UTF-8的区别就是UTF-8 BOM在开头多了EF BB BF（十六进制打开文件，字节流读取是 -17 -69 -65）.
+#解决
+&emsp;&emsp;1、判断是不是UTF-8 BOM格式<br/>
+&emsp;&emsp;2、去掉文件开始的3个字节<br/>
+&emsp;&emsp;就这么简单，自己写多省事啊，搞什么百度T_T。
