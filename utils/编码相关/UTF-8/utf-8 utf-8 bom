@@ -17,3 +17,6 @@
 &emsp;&emsp;1、判断是不是UTF-8 BOM格式<br/>
 &emsp;&emsp;2、去掉文件开始的3个字节<br/>
 &emsp;&emsp;就这么简单，自己写多省事啊，搞什么百度T_T。
+#其他
+&emsp;&emsp;网上说，IDEA默认使用的编译器是javac，javac不支持UTF-8 BOM的文件。eclipse使用的编译器支持UTF-8 BOM文件所以能编译成功。
+所有在IDEA里边配置使用eclipse编译器就可以编译UTF-8 BOM文件，但是，本机配置成eclipse编译器之后依然不能编译成功。
