@@ -1,4 +1,30 @@
 
+
+#索引
+##1、概念
+&emsp;&emsp;像一本字典，根据页码找到数据的，储存引擎用于快速找到记录的一种数据结构<br/>
+&emsp;&emsp;索引类型有B+Tree、Hash索引、位图索引。其中B+Tree最常见
+##2、B-Tree和B+Tree
+&emsp;&emsp;B-Tree和B+Tree都是平衡多路查找树，B+Tree是B-Tree的升级版本。
+###B-Tree
+&emsp;&emsp;
+
+###B+Tree
+&emsp;&emsp;
+
+###优缺点对比
+&emsp;&emsp;
+##几个问题
+###索引再磁盘上是怎么储存的
+###磁盘页是怎么载入数据库内存的
+###为什么要使用B+Tree
+###什么事聚簇索引，优缺点是什么
+
+&emsp;&emsp;
+
+
+
+
 #mysql四大特性
  * 原子性（Atomicity）<br/>
    原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。
@@ -91,5 +117,5 @@ oracle只有读已提交和串行化两个级别，默认是 读已提交（READ
  * 解决死锁<br/>
  show engine innodb status; 打印出innodb最后一次产生死锁的日志。
        
-        
+       
         
