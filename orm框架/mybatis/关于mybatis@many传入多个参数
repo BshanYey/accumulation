@@ -1,0 +1,8 @@
+
+示例
+
+    @Result(column="requirement=uuid, creator=myUuid",property="attachments", many = @Many(select = "com.xxx.RequirementAttachmentMapper.selectByRequirementAndCreator")),
+    
+    @Select("select uuid,requirement_uuid,file_path,create_time,create_by,is_delete from ft_requirement_attachment " +
+                " where requirement_uuid=#{requirement} and create_by=#{creator} and is_delete='N'")
+    List<RequirementAttachmentObj> selectByRequirementAndCreator(@Param("requirement") String requirementUuid, @Param("creator") String creator);
