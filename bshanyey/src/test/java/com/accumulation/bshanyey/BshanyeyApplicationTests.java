@@ -15,7 +15,7 @@ public class BshanyeyApplicationTests {
     @Test
     public void contextLoads() {
 //        UTF8Utils.conversion("C:\\Users\\coder\\Desktop\\temp\\test1", "C:\\Users\\coder\\Desktop\\temp\\test2");
-        UTF8Utils.conversion("C:\\Users\\coder\\Desktop\\temp\\test2");
+        UTF8Utils.conversion("D:\\workspace\\idea\\ylt");
     }
 
 }
